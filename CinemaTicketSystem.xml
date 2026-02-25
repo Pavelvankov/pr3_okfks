@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CinemaTicketSystem</name>
+    </assembly>
+    <members>
+        <member name="T:CinemaTicketSystem.ITicketPriceCalculator">
+            <summary>
+            Интерфейс для расчета стоимости билетов в кино.
+            </summary>
+        </member>
+        <member name="M:CinemaTicketSystem.ITicketPriceCalculator.CalculatePrice(CinemaTicketSystem.TicketRequest)">
+            <summary>
+            Рассчитывает стоимость билета с учетом возраста, скидок, дня недели и VIP-статуса.
+            </summary>
+            <param name="request">
+            Объект <see cref="T:CinemaTicketSystem.TicketRequest"/>, содержащий параметры заказа:
+            <list type="bullet">
+            <item>Age — возраст посетителя (0–120)</item>
+            <item>IsStudent — является ли студентом</item>
+            <item>IsVip — VIP-билет</item>
+            <item>Day — день недели посещения</item>
+            <item>SessionTime — время начала сеанса</item>
+            </list>
+            </param>
+            <returns>
+            Стоимость билета в рублях, округленная до целого.
+            Бесплатные билеты возвращают 0.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Если <paramref name="request"/> равен null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Если возраст в <paramref name="request"/> меньше 0 или больше 120.</exception>
+        </member>
+        <member name="T:CinemaTicketSystem.TicketPriceCalculator">
+            <summary>
+            Реализация модуля расчета цены билета для кинотеатра
+            </summary>
+        </member>
+        <member name="M:CinemaTicketSystem.TicketPriceCalculator.CalculatePrice(CinemaTicketSystem.TicketRequest)">
+            <inheritdoc />
+        </member>
+        <member name="T:CinemaTicketSystem.TicketRequest">
+            <summary>
+            Представляет запрос на покупку билета в кино.
+            Содержит информацию о возрасте посетителя, скидках и времени сеанса.
+            </summary>
+        </member>
+        <member name="P:CinemaTicketSystem.TicketRequest.Age">
+            <summary>
+            Возраст посетителя в годах.
+            Значение должно быть от 0 до 120.
+            </summary>
+        </member>
+        <member name="P:CinemaTicketSystem.TicketRequest.IsStudent">
+            <summary>
+            Указывает, является ли посетитель студентом.
+            Студенческая скидка применяется для возраста 18–25 лет.
+            </summary>
+        </member>
+        <member name="P:CinemaTicketSystem.TicketRequest.IsVip">
+            <summary>
+            Указывает, является ли билет VIP.
+            VIP-наценка увеличивает стоимость билета в 2 раза.
+            </summary>
+        </member>
+        <member name="P:CinemaTicketSystem.TicketRequest.Day">
+            <summary>
+            День недели посещения киносеанса.
+            Используется для скидок по средам.
+            </summary>
+        </member>
+        <member name="P:CinemaTicketSystem.TicketRequest.SessionTime">
+            <summary>
+            Время начала сеанса.
+            Используется для утренней скидки (до 12:00).
+            </summary>
+        </member>
+    </members>
+</doc>
